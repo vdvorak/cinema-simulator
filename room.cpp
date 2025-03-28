@@ -1,18 +1,15 @@
 #include "room.h"
 #include <vector>
 
-Room::Room(const unsigned int number, const unsigned int numberOfRows, const unsigned int numberOfSeats) : number(number) {
+#include "roomseat.h"
+
+Room::Room(const unsigned int number, const unsigned int numberOfRows, const unsigned int numberOfSeats) : number(number), rows(numberOfRows) {
     this->number = number;
-    rows.reserve(numberOfRows);
+
     for (int i = 0; i < numberOfRows; i++) {
-        auto row = rows[i];
-        row.reserve(numberOfSeats);
-
         for (int j = 0; j < numberOfSeats; j++) {
-            row.emplace_back(j+1);
+            rows[i].emplace_back(j+1);
         }
-
-        rows.push_back(std::move(row));
     }
 }
 
