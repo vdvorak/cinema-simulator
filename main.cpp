@@ -1,14 +1,16 @@
 #include <iostream>
-#include "movie.h"
-#include "room.h"
+#include "Movie.h"
+#include "Room.h"
 
-void printRoom(Room& room) {
-    std::cout << "Room: " << room.getNumber() << std::endl;
-    for(int i = 0; i < room.getRows().size(); i++) {
-        auto row = room.getRows().at(i);
+
+
+void printRoom(Cinema::Room& room) {
+    std::cout << "Room: " << room.Number << std::endl;
+    for(int i = 0; i < room.GetRows().size(); i++) {
+        auto row = room.GetRows().at(i);
         for(int j = 0; j < row.size(); j++) {
             auto seat = row.at(j);
-            std::cout << "[" << (seat.getIsTaken() ? "X" : std::to_string(seat.getNumber()).c_str()) << "]";
+            std::cout << "[" << (seat.GetIsTaken() ? "X" : std::to_string(seat.Number).c_str()) << "]";
         }
         std::cout << std::endl;
     }
@@ -17,10 +19,10 @@ void printRoom(Room& room) {
 
 int main()
 {
+    Cinema::Movie movie{"The lord of the rings the fellowship of the ring", Cinema::MovieGenre::Sci_Fi, "LOTR description", 180};
 
-    Movie movie{"The lord of the rings the fellowship of the ring", "LOTR description", 180};
+    Cinema::Room room{1,2,5};
 
-    Room room{1,2,5};
     printRoom(room);
 
     return 0;
@@ -32,5 +34,7 @@ int main()
     std::cout  << "3. Visit cinema as a customer" << std::endl;
     return 0;
 }
+
+
 
 
